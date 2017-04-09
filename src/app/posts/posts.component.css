@@ -1,0 +1,10 @@
+md-card {
+  margin: 50px;
+  background-color: #EEEEEE;
+}
+md-card:hover {
+  background-color: #E5E5E5;
+}
+span {
+  margin-left: 50px;
+}

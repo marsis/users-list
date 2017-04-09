@@ -1,0 +1,6 @@
+<div class="container">
+  <h2>Users</h2>
+</div>
+<md-card class="demo-primary-color" *ngFor="let user of users">
+  <app-user [user]="user" [routerLink]="'/users/'+ user.id + '/posts'"></app-user>
+</md-card>

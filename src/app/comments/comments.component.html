@@ -1,0 +1,12 @@
+<span routerLink="/users">Go to Users</span>
+<div class="container">
+  <h3>Comments on
+    <strong>{{post[0]?.title}}</strong>
+  </h3>
+</div>
+<md-card *ngFor="let comment of comments">
+  <p md-line><strong>{{comment.name}}</strong></p>
+  <p md-line>{{comment.body}}</p>
+  <p><a href="mailto:comment.email">&nbsp;{{comment.email}}</a></p>
+</md-card>
+
