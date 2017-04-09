@@ -1,25 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UsersComponent } from './users.component';
+import { usersServiceStub } from '../mocks/usersServiceStub';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
-    })
-    .compileComponents();
-  }));
+describe('Component: UsersComponent', () => {
+  let component: UsersComponent, users;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new UsersComponent(usersServiceStub);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should return users', () => {
+    spyOn(usersServiceStub, 'getUsers').and.callThrough();
+    component.ngOnInit();
+    expect(usersServiceStub.getUsers).toHaveBeenCalled();
+  })
+
 });

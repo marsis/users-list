@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../users.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
+
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
+
 export class PostsComponent implements OnInit {
 
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute,
-  ) {
-
-
-  }
+  ) { }
 
   public posts: Post[] = [];
-  private currentUserId: number;
   public user: User[] = [];
+
+  private currentUserId: number;
 
   public ngOnInit() {
     this.getCurrentUserId()

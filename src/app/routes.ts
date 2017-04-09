@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PostsComponent } from './posts/posts.component';
 import { ModuleWithProviders } from '@angular/core';
+
+import { PostsComponent } from './posts/posts.component';
 import { CommentsComponent } from './comments/comments.component';
 import { UsersComponent } from './users/users.component';
 

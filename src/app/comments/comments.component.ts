@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../users.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-comments',
@@ -11,15 +12,16 @@ import { Observable } from 'rxjs';
 })
 export class CommentsComponent implements OnInit {
 
+
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute
-  ) {
-  }
+  ) { }
 
   public comments: PostComment[] = [];
-  private currentPostId: number;
   public post: Post[] = [];
+
+  private currentPostId: number;
 
   public ngOnInit() {
     this.getCurrentPostId()
@@ -38,7 +40,7 @@ export class CommentsComponent implements OnInit {
       );
   }
 
-  getCurrentPostId(): Observable<number> {
+  public getCurrentPostId(): Observable<number> {
     return this._route.params
       .mergeMap(
         (params: Params) => {
@@ -47,5 +49,4 @@ export class CommentsComponent implements OnInit {
         }
       );
   }
-
 }
