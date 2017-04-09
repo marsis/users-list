@@ -1,6 +1,7 @@
 md-card {
   margin: 50px;
   background-color: #EEEEEE;
+  cursor: pointer;
 
 }
 md-card:hover {

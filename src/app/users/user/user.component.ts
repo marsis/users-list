@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
 
   @Input()
-  public user: any = {};
+  public user: User;
 
 
 

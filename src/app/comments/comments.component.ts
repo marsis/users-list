@@ -11,32 +11,29 @@ import { Observable } from 'rxjs';
 })
 export class CommentsComponent implements OnInit {
 
-  constructor(
+  public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute
   ) {
   }
 
-  public comments: any = [];
-  private currentUserId: number;
+  public comments: PostComment[] = [];
   private currentPostId: number;
-  public post: any = [];
+  public post: Post[] = [];
 
-  ngOnInit() {
-
-
+  public ngOnInit() {
     this.getCurrentPostId()
       .subscribe(
         () => {
           this._userService.getAllPosts()
             .subscribe(
               posts => {
-                this.post = posts.json()
+                this.post = posts
                   .filter(post => post.id === this.currentPostId);
               }
             );
           this._userService.getComments(this.currentPostId)
-            .subscribe(comments => this.comments = comments.json());
+            .subscribe(comments => this.comments = comments);
         }
       );
   }

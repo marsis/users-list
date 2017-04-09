@@ -1,39 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class UsersService {
 
   constructor(
     private _http: Http
-  ) {
-    this.getUsers();
+  ) { }
 
+
+  public getUsers(): Observable<User[]>{
+    return this._http.get('https://jsonplaceholder.typicode.com/users')
+      .map((user) => user.json());
   }
 
-  getUsers(){
-    return this._http.get('https://jsonplaceholder.typicode.com/users');
-
+  public getPosts(id): Observable<Post[]>{
+    return this._http.get('https://jsonplaceholder.typicode.com/posts?userId=' + id)
+      .map(posts => posts.json());
   }
 
-  getPosts(id){
-    return this._http.get('https://jsonplaceholder.typicode.com/posts?userId=' + id);
-  }
-
-  getAllPosts(){
-    return this._http.get('https://jsonplaceholder.typicode.com/posts');
+  public getAllPosts(): Observable<Post[]>{
+    return this._http.get('https://jsonplaceholder.typicode.com/posts')
+      .map(allPosts => allPosts.json());
   }
 
 
-  getComments(postId){
-    return this._http.get('https://jsonplaceholder.typicode.com/posts/' + postId + '/comments');
+  public getComments(postId): Observable<PostComment[]>{
+    return this._http.get('https://jsonplaceholder.typicode.com/posts/' + postId + '/comments')
+      .map(comments => comments.json());
   }
-
-  /* getUserId(userId){
-   return userId;
-   }
-
-   getUserId(){
-
-   }*/
 }

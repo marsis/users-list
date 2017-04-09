@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class PostsComponent implements OnInit {
 
-  constructor(
+  public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute,
   ) {
@@ -20,32 +20,29 @@ export class PostsComponent implements OnInit {
 
   }
 
-  public posts: any = [];
+  public posts: Post[] = [];
   private currentUserId: number;
-  public user: any = [];
+  public user: User[] = [];
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getCurrentUserId()
       .subscribe(
         () => {
           this._userService.getUsers()
             .subscribe(
               users => {
-                this.user = users.json()
+                this.user = users
                   .filter(user => user.id === this.currentUserId);
               }
             );
 
           this._userService.getPosts(this.currentUserId)
-            .subscribe(posts => this.posts = posts.json());
+            .subscribe(posts => this.posts = posts);
         }
       );
-
-
   }
 
-
-  getCurrentUserId(): Observable<number> {
+  public getCurrentUserId(): Observable<number> {
     return this._route.params
       .mergeMap(
         (params: Params) => {

@@ -9,14 +9,13 @@ import { UsersService } from '../users.service';
 
 export class UsersComponent implements OnInit {
 
-  public users: any = [];
+  public users: User[] = [];
 
-  constructor( private _userService: UsersService) { }
+  public constructor( private _userService: UsersService) { }
 
-  ngOnInit() {
-
+  public ngOnInit(): void {
     this._userService.getUsers()
-      .subscribe( users => this.users = users.json());
+      .subscribe( (users) => this.users =users )
   }
 
 }
