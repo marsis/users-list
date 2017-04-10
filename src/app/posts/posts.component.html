@@ -7,6 +7,8 @@
     </a>
   </h3>
 </div>
-<md-card *ngFor="let post of posts">
-  <app-post [post]="post" [routerLink]="'/posts/' + post.id+ '/comments'"></app-post>
-</md-card>
+<div *ngFor="let post of posts">
+  <md-card [routerLink]="'/posts/' + post.id+ '/comments'">
+  <app-post [post]="post"></app-post>
+  </md-card>
+</div>
