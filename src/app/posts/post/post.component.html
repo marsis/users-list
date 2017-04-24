@@ -1,8 +1,12 @@
+<i class="material-icons icon-delete" (click)="onDeletePost()">close</i>
 <strong md-line class="demo-secondary-text">
   {{post.title}}
 </strong>
 <p md-line class="demo-secondary-text">
   {{post.body}}
 </p>
+<button md-button (click)="gotoComments(post.id)">Read comments</button>
+
+
 
 

@@ -5,28 +5,20 @@ import { HttpModule } from '@angular/http';
 import { MdListModule } from '@angular/material';
 import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-import { OverlayContainer } from '@angular/material';
 
+import { OverlayContainer } from '@angular/material';
 import { routes } from './routes';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { CommentsComponent } from './comments/comments.component';
-import { PostComponent } from './posts/post/post.component';
-import { PostsComponent } from './posts/posts.component';
-import { UserComponent } from './users/user/user.component';
-import { UsersComponent } from './users/users.component';
 import { UsersService } from './users.service';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CommentsComponent,
-    PostComponent,
-    PostsComponent,
-    UserComponent,
-    UsersComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +27,10 @@ import { UsersService } from './users.service';
     HttpModule,
     MdListModule,
     MaterialModule,
+    UsersModule,
+    PostsModule,
     routes
+
   ],
   providers: [
     UsersService

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
 
 import { UsersService } from '../users.service';
 
@@ -14,29 +14,28 @@ import { UsersService } from '../users.service';
 
 export class PostsComponent implements OnInit {
 
+  public posts: Post[] = [];
+  public user: User;
+  public formValue: {} = {};
+
+  public title = 'new post';
+  public body = '';
+
+  private currentUserId: number;
+
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute,
   ) { }
 
-  public posts: Post[] = [];
-  public user: User[] = [];
-
-  private currentUserId: number;
-
   public ngOnInit() {
     this.getCurrentUserId()
       .subscribe(
         () => {
-          this._userService.getUsers()
+          this._userService.getUserById(this.currentUserId)
             .subscribe(
-              users => {
-                this.user = users
-                  .filter(user => user.id === this.currentUserId);
-              }
-            );
-
-          this._userService.getPosts(this.currentUserId)
+              user => this.user = user);
+          this._userService.getUserPosts(this.currentUserId)
             .subscribe(posts => this.posts = posts);
         }
       );
@@ -50,5 +49,26 @@ export class PostsComponent implements OnInit {
           return Observable.of(this.currentUserId);
         }
       );
+  }
+
+ public onSubmit(formValue): void {
+    formValue.userId = this.currentUserId;
+    this.formValue = formValue;
+    this.addPost();
+    this.body = '';
+  }
+
+  public addPost(): void {
+    this._userService.addPost(this.formValue)
+      .subscribe(response => {
+        this.posts.push(response);
+      });
+  }
+
+  public deletePost(post: Post) {
+    this._userService.deletePost(post['id'])
+      .subscribe(posts => {
+        this.posts = this.posts.filter(item => item !== post);
+      });
   }
 }

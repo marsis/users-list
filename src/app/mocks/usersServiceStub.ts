@@ -1,13 +1,13 @@
-import { Observable } from 'rxjs';
 import { ResponseOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { users } from './usersStub';
 
 
-let options = new ResponseOptions({
+const options = new ResponseOptions({
   body: JSON.stringify(users)
 });
 
-let response = new Response(options);
+const response = new Response(options);
 
 export let usersServiceStub: any = {
   getUsers: () => {

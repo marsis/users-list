@@ -1,4 +1,5 @@
-<span routerLink="/users">Go to Users</span>
+<span routerLink="/users">Back to Users list</span>
+<div *ngIf="comments?.length">
 <div class="container">
   <h3>Comments on
     <strong>{{post[0]?.title}}</strong>
@@ -9,4 +10,8 @@
   <p md-line>{{comment.body}}</p>
   <p><a href=mailto:{{comment.email}}>&nbsp;{{comment.email}}</a></p>
 </md-card>
+</div>
 
+<span class="comments" *ngIf="!comments?.length">
+  No Comments Yet
+</span>

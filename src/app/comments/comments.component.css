@@ -6,7 +6,18 @@ md-card {
 md-card:hover {
   background-color: #E5E5E5;
 }
-span{
+
+span {
   margin-left: 50px;
   cursor: pointer;
+  font-size: 14px;
+}
+
+span:hover {
+  color: gray;
+  font-style: italic;
+}
+
+.comments {
+  text-align: center;
 }

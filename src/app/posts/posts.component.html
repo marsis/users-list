@@ -1,14 +1,42 @@
-<span routerLink="/users">Go to Users</span>
+<span routerLink="/users">Back to Users list</span>
+
+<div class="container">
+  <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+    <input mdInput
+           required
+           placeholder="Add post name"
+           name="title"
+           type="text"
+           [(ngModel)]="title"
+           #titleRef="ngModel"
+           minlength="3">
+
+    <div class="error"  *ngIf="titleRef.errors?.required">This field id required</div>
+    <div class="error" *ngIf="titleRef.errors?.minlength">Title should be more then 3 characters</div>
+
+    <textarea class="text-position" mdInput
+              id="text"
+              required
+              placeholder="Add post text"
+              rows="5"
+              cols="120"
+              name="body"
+              [(ngModel)]="body"></textarea>
+
+    <button md-button type="submit" [disabled]="formRef.form.invalid">Add Post</button>
+  </form>
+</div>
+
 <div class="container">
   <h3>Posts from
-    <strong>{{user[0]?.username}}</strong>
-    <a href=mailto:{{user[0]?.email}}>
-      &nbsp;{{user[0]?.email}}
+    <strong>{{user?.username}}</strong>
+    <a href=mailto:{{user?.email}}>
+      &nbsp;{{user?.email}}
     </a>
   </h3>
 </div>
 <div *ngFor="let post of posts">
-  <md-card [routerLink]="'/posts/' + post.id+ '/comments'">
-  <app-post [post]="post"></app-post>
+  <md-card>
+    <app-post [post]="post" (deletePost)="deletePost(post)"></app-post>
   </md-card>
 </div>

@@ -2,7 +2,7 @@
   <h2>Users</h2>
 </div>
 <div class="demo-primary-color" *ngFor="let user of users">
-  <md-card [routerLink]="'/users/'+ user.id + '/posts'">
+  <md-card (click)="gotoPosts(user['id'])">
   <app-user [user]="user"></app-user>
   </md-card>
 </div>

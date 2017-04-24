@@ -1,9 +1,8 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-body {
 
+body {
   margin: 10px;
   font-family: Roboto, sans-serif;
-
 }
 .container {
   margin-left: 50px;

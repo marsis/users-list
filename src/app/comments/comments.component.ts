@@ -1,7 +1,7 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { UsersService } from '../users.service';
 
@@ -12,16 +12,15 @@ import { UsersService } from '../users.service';
 })
 export class CommentsComponent implements OnInit {
 
+  public comments: PostComment[] = [];
+  public post: Post[] = [];
+
+  private currentPostId: number;
 
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute
   ) { }
-
-  public comments: PostComment[] = [];
-  public post: Post[] = [];
-
-  private currentPostId: number;
 
   public ngOnInit() {
     this.getCurrentPostId()
@@ -34,7 +33,7 @@ export class CommentsComponent implements OnInit {
                   .filter(post => post.id === this.currentPostId);
               }
             );
-          this._userService.getComments(this.currentPostId)
+          this._userService.getPostComments(this.currentPostId)
             .subscribe(comments => this.comments = comments);
         }
       );
