@@ -1,5 +1,5 @@
 <span routerLink="/users">Back to Users list</span>
-<div *ngIf="comments?.length">
+<div *ngIf="comments.length">
 <div class="container">
   <h3>Comments on
     <strong>{{post[0]?.title}}</strong>
@@ -12,6 +12,6 @@
 </md-card>
 </div>
 
-<span class="comments" *ngIf="!comments?.length">
+<span class="comments" *ngIf="!comments.length">
   No Comments Yet
 </span>

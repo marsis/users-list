@@ -7,13 +7,14 @@ import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 import { OverlayContainer } from '@angular/material';
-import { routes } from './routes';
+
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { UsersService } from './users.service';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
+import { routes } from './routes';
 
 
 @NgModule({
