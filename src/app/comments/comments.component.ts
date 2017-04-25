@@ -20,18 +20,15 @@ export class CommentsComponent implements OnInit {
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute
-  ) { }
+  ) {}
 
   public ngOnInit() {
     this.getCurrentPostId()
       .subscribe(
         () => {
-          this._userService.getAllPosts()
+          this._userService.getUserPosts(this.getCurrentUserId())
             .subscribe(
-              posts => {
-                this.post = posts
-                  .filter(post => post.id === this.currentPostId);
-              }
+              post => this.post = post
             );
           this._userService.getPostComments(this.currentPostId)
             .subscribe(comments => this.comments = comments);
@@ -47,5 +44,9 @@ export class CommentsComponent implements OnInit {
           return Observable.of(this.currentPostId);
         }
       );
+  }
+
+  public getCurrentUserId(): number{
+    return this._userService.getCurrentUserId();
   }
 }

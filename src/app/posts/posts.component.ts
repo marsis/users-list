@@ -39,6 +39,7 @@ export class PostsComponent implements OnInit {
             .subscribe(posts => this.posts = posts);
         }
       );
+    this.setCurrentUserId();
   }
 
   public getCurrentUserId(): Observable<number> {
@@ -49,6 +50,10 @@ export class PostsComponent implements OnInit {
           return Observable.of(this.currentUserId);
         }
       );
+  }
+
+  public setCurrentUserId(): void{
+    this._userService.setCurrentUserId(this.currentUserId);
   }
 
  public onSubmit(formValue): void {

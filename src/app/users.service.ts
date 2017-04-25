@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class UsersService {
 
   private apiURL = 'https://jsonplaceholder.typicode.com';
-
+  public currentUserId: number;
   public constructor(
     private _http: Http
   ) { }
@@ -27,10 +27,6 @@ export class UsersService {
     return this.getJSON(`/users/${id}`);
   }
 
-  public getAllPosts(): Observable<Post[]> {
-    return this.getJSON(`/posts`);
-  }
-
   public getUserPosts(id): Observable<Post[]> {
     return this.getJSON(`/posts?userId=${id}`);
   }
@@ -47,5 +43,13 @@ export class UsersService {
   public deletePost(postId): Observable<Post> {
     return this._http.delete(`${this.apiURL}/posts/${postId}`)
       .map(post => post.json());
+  }
+
+  public setCurrentUserId(id): void{
+    this.currentUserId = id;
+  }
+
+  public getCurrentUserId(): number{
+    return this.currentUserId;
   }
 }
