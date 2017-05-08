@@ -20,7 +20,8 @@ export class PostsComponent implements OnInit {
 
   public title = 'new post';
   public body = '';
-
+  public userName: string;
+  public filteredPosts: Post[];
   private currentUserId: number;
 
   public constructor(
@@ -36,12 +37,27 @@ export class PostsComponent implements OnInit {
             .subscribe(
               user => this.user = user);
           this._userService.getUserPosts(this.currentUserId)
-            .subscribe(posts => this.posts = posts);
+            .subscribe(posts => {
+              this.posts = posts;
+              this.assignCopy();
+            });
         }
       );
     this.setCurrentUserId();
+
   }
 
+  public assignCopy(){
+    this.filteredPosts = Object.assign([], this.posts);}
+
+  public onChangeValueInFilter(value): void {
+    /*if (!value) {
+     this.assignCopy();
+     }*/
+    this.filteredPosts = Object.assign([], this.posts)
+      .filter(item => item.title.toLowerCase()
+        .indexOf(value.toLowerCase()) > -1);
+  }
   public getCurrentUserId(): Observable<number> {
     return this._route.params
       .mergeMap(
@@ -66,14 +82,14 @@ export class PostsComponent implements OnInit {
   public addPost(): void {
     this._userService.addPost(this.formValue)
       .subscribe(response => {
-        this.posts.push(response);
+        this.filteredPosts.push(response);
       });
   }
 
   public deletePost(post: Post) {
     this._userService.deletePost(post['id'])
       .subscribe(posts => {
-        this.posts = this.posts.filter(item => item !== post);
+        this.filteredPosts = this.filteredPosts.filter(item => item !== post);
       });
   }
 }

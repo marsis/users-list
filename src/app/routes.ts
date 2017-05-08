@@ -1,12 +1,24 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
+
   {
-    path: '', loadChildren: './users/users.module#UsersModule'
+    path: '', component: LoginComponent
   },
   {
-    path: 'user/:userId', loadChildren: './posts/posts.module#PostsModule'
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+
+  {
+    path: 'users', loadChildren: './users/users.module#UsersModule'
+  },
+  {
+    path: 'user/:userId',
+    canActivate: [AuthService],
+    loadChildren: './posts/posts.module#PostsModule'
   }
 ];
 

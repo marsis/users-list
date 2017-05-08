@@ -27,6 +27,8 @@
   </form>
 </div>
 
+<input type="text" [(ngModel)]="search" #searchRef="ngModel" (ngModelChange)="onChangeValueInFilter($event)">
+{{search}}
 <div class="container">
   <h3>Posts from
     <strong>{{user?.username}}</strong>
@@ -35,7 +37,7 @@
     </a>
   </h3>
 </div>
-<div *ngFor="let post of posts">
+<div *ngFor="let post of filteredPosts">
   <md-card>
     <app-post [post]="post" (deletePost)="deletePost(post)"></app-post>
   </md-card>

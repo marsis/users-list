@@ -15,11 +15,14 @@ import { UsersService } from './users.service';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { routes } from './routes';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,8 +36,10 @@ import { routes } from './routes';
     routes
 
   ],
+
   providers: [
-    UsersService
+    UsersService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

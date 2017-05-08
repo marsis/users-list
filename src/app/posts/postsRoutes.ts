@@ -5,7 +5,7 @@ import { CommentsComponent } from '../comments/comments.component';
 
 export const postRoutes = [
   {
-    path: '', component: PostsComponent
+    path: 'user/:userId', component: PostsComponent
   },
 
   {
@@ -14,3 +14,5 @@ export const postRoutes = [
 ];
 
 export default RouterModule.forChild(postRoutes);
+
+

@@ -9,14 +9,17 @@ import { CommentsComponent } from '../comments/comments.component';
 import { PostsComponent } from './posts.component';
 import { PostComponent } from './post/post.component';
 import { postRoutes } from './postsRoutes';
+import { AuthService } from '../auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     MaterialModule,
+
     RouterModule.forChild(postRoutes)
   ],
+
   declarations: [
     PostsComponent,
     PostComponent,
