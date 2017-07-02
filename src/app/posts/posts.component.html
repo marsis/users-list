@@ -37,6 +37,26 @@
     </a>
   </h3>
 </div>
+
+<form [formGroup]="options">
+<select formControlName="selector">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+</select>
+
+<label>text1</label>
+<input type="radio" checked formControlName="choose" value="first">
+
+<label>text2</label>
+<input type="radio" formControlName="choose" value="second ">
+
+<label>text3</label>
+<input type="radio" formControlName="choose" value="third">
+</form>
+
+
+
 <div *ngFor="let post of filteredPosts">
   <md-card>
     <app-post [post]="post" (deletePost)="deletePost(post)"></app-post>

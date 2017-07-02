@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 
 import { UsersService } from '../users.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-posts',
@@ -23,11 +25,24 @@ export class PostsComponent implements OnInit {
   public userName: string;
   public filteredPosts: Post[];
   private currentUserId: number;
+  public options = new FormGroup({
+    selector: new FormControl('1'),
+    choose: new FormControl('first')
+
+});
 
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute,
-  ) { }
+  ) {
+  this.options.valueChanges
+    //.debounceTime(5000)
+    .subscribe(value => {
+      console.log(value);
+    });
+}
+
+
 
   public ngOnInit() {
     this.getCurrentUserId()
