@@ -6,7 +6,7 @@ import 'rxjs/add/operator/mergeMap';
 
 import { UsersService } from '../users.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
+
 
 @Component({
   selector: 'app-posts',
@@ -34,15 +34,7 @@ export class PostsComponent implements OnInit {
   public constructor(
     private _userService: UsersService,
     private _route: ActivatedRoute,
-  ) {
-  this.options.valueChanges
-    //.debounceTime(5000)
-    .subscribe(value => {
-      console.log(value);
-    });
-}
-
-
+  ) {}
 
   public ngOnInit() {
     this.getCurrentUserId()
@@ -66,10 +58,7 @@ export class PostsComponent implements OnInit {
     this.filteredPosts = Object.assign([], this.posts);}
 
   public onChangeValueInFilter(value): void {
-    /*if (!value) {
-     this.assignCopy();
-     }*/
-    this.filteredPosts = Object.assign([], this.posts)
+     this.filteredPosts = Object.assign([], this.posts)
       .filter(item => item.title.toLowerCase()
         .indexOf(value.toLowerCase()) > -1);
   }

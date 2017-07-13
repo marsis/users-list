@@ -26,8 +26,8 @@ onSubmit(formValue): void {
     if (item.login === this.userLogin.login && item.password === this.userLogin.password) {
       this._authService.checkAuth(true);
       this._router.navigate(['users']);
-      }else{
-      alert('incorrect login or password')
+      } else {
+      alert('incorrect login or password');
     }
   });
 
