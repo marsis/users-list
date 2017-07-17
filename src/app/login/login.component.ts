@@ -12,8 +12,7 @@ export class LoginComponent implements OnInit {
   public userLogin: Login;
 
   public loginArray: Login[] =[
-    { login: 'ann', password: '111'},
-    { login: 'add', password: '222'}];
+    { login: 'ann', password: '111'}];
 
   constructor(private _authService: AuthService, private _router: Router) { }
 
