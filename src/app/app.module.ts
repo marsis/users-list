@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BaseRequestOptions, Http, HttpModule } from '@angular/http';
 import { MdListModule } from '@angular/material';
 import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -17,12 +17,18 @@ import { PostsModule } from './posts/posts.module';
 import { routes } from './routes';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AuthenticationService } from './authentification.service';
+
+import { MockBackend } from '@angular/http/testing';
+import { fakeBackendProvider } from './_helpers/fake-backend';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -39,7 +45,14 @@ import { LoginComponent } from './login/login.component';
 
   providers: [
     UsersService,
-    AuthService
+    AuthService,
+    AuthenticationService,
+
+    // providers used to create fake backend
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
+
   ],
   bootstrap: [AppComponent]
 })

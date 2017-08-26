@@ -9,26 +9,18 @@ export class AuthService implements CanActivate {
   constructor(private _router: Router) { }
 
 
-  canActivate(): boolean{
-console.log(this.login);
-  return this.login;
+ public canActivate(): boolean{
+if (localStorage.getItem('currentUser')) {
+  // logged in so return true
+  return true;
+  }
+  // not logged in so redirect to login page
+    this._router.navigate(['/login']);
+    return false;
 }
 
-
-  checkAuth(login) {
+ public checkAuth(login) {
     this.login = login;
   }
 
 }
-/*
-
- canActivate(): boolean {
- let active = false;
- if (this._authService.checkAuth()) {
- active = true;
- } else {
- this._router.navigate( ['/login'], { skipLocationChange: true } );
- }
- return active;
- }
- */

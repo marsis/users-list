@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentification.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public userLogin: Login;
+
+ /* public userLogin: Login;
 
   public loginArray: Login[] =[
     { login: 'ann', password: '111'}];
@@ -31,4 +33,35 @@ onSubmit(formValue): void {
   });
 
 }
+}
+*/
+
+  model: any = {};
+  loading = false;
+  error = '';
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
+
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
+  }
+
+  login() {
+    this.loading = true;
+
+    this.authenticationService.login(this.model.username, this.model.password)
+      .subscribe(result => {
+        if (result === true) {
+          // login successful
+          this.router.navigate(['/']);
+        } else {
+          // login failed
+          this.error = 'Username or password is incorrect';
+          this.loading = false;
+        }
+      });
+  }
 }
