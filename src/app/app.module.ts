@@ -22,6 +22,7 @@ import { AuthenticationService } from './authentification.service';
 
 import { MockBackend } from '@angular/http/testing';
 import { fakeBackendProvider } from './_helpers/fake-backend';
+import { DragAndDropExample, DragMe, DropOverMe } from './dragndrop/dragndrop.component';
 
 
 
@@ -30,6 +31,9 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
     AppComponent,
     LoginComponent,
     HomeComponent,
+    DragAndDropExample,
+    DragMe,
+    DropOverMe
   ],
   imports: [
     BrowserAnimationsModule,
